@@ -10,6 +10,5 @@
 
 @interface ViewController : UIViewController
 
-- (IBAction)nextPhoto:(id)sender;
 
 @end

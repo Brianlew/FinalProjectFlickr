@@ -31,11 +31,29 @@
                                     <action selector="nextPhoto:" destination="2" eventType="touchUpInside" id="2uS-eh-hBh"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="6eb-ZA-v8P">
+                                <rect key="frame" x="142" y="63" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="oQx-up-xOm">
+                                <rect key="frame" x="5" y="513" width="116" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Tags"/>
+                                    <segment title="Location"/>
+                                </segments>
+                                <connections>
+                                    <action selector="tagOrLocationControl:" destination="2" eventType="valueChanged" id="wsj-AB-wNa"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="6eb-ZA-v8P" id="9kM-aa-Gn3"/>
                         <outlet property="imageView" destination="OiI-dV-XYo" id="PwV-nK-YUa"/>
+                        <outlet property="tagOrLocationControlOutlet" destination="oQx-up-xOm" id="dNF-rG-o0r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
