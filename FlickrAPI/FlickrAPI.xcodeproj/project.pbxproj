@@ -18,6 +18,12 @@
 		D34E067B17553A69008340BA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D34E067A17553A69008340BA /* Default-568h@2x.png */; };
 		D34E067E17553A69008340BA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34E067C17553A69008340BA /* MainStoryboard.storyboard */; };
 		D34E068117553A69008340BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D34E068017553A69008340BA /* ViewController.m */; };
+		D34E06E9175667A9008340BA /* mapButtonImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D34E06E8175667A9008340BA /* mapButtonImage.jpg */; };
+		D34E06EC17566935008340BA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D34E06EB17566935008340BA /* MapViewController.m */; };
+		D34E06EE17566A5C008340BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E06ED17566A5C008340BA /* MapKit.framework */; };
+		D34E06F017566A63008340BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E06EF17566A63008340BA /* CoreLocation.framework */; };
+		D34E06F217569ADD008340BA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E06F117569ADD008340BA /* QuartzCore.framework */; };
+		D34E06F417569D06008340BA /* mapButtonImageZoomed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D34E06F317569D06008340BA /* mapButtonImageZoomed.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +43,13 @@
 		D34E067D17553A69008340BA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		D34E067F17553A69008340BA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D34E068017553A69008340BA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D34E06E8175667A9008340BA /* mapButtonImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mapButtonImage.jpg; sourceTree = "<group>"; };
+		D34E06EA17566935008340BA /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		D34E06EB17566935008340BA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		D34E06ED17566A5C008340BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D34E06EF17566A63008340BA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D34E06F117569ADD008340BA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D34E06F317569D06008340BA /* mapButtonImageZoomed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mapButtonImageZoomed.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D34E06F217569ADD008340BA /* QuartzCore.framework in Frameworks */,
+				D34E06F017566A63008340BA /* CoreLocation.framework in Frameworks */,
+				D34E06EE17566A5C008340BA /* MapKit.framework in Frameworks */,
 				D34E066517553A69008340BA /* UIKit.framework in Frameworks */,
 				D34E066717553A69008340BA /* Foundation.framework in Frameworks */,
 				D34E066917553A69008340BA /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +89,9 @@
 		D34E066317553A69008340BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D34E06F117569ADD008340BA /* QuartzCore.framework */,
+				D34E06EF17566A63008340BA /* CoreLocation.framework */,
+				D34E06ED17566A5C008340BA /* MapKit.framework */,
 				D34E066417553A69008340BA /* UIKit.framework */,
 				D34E066617553A69008340BA /* Foundation.framework */,
 				D34E066817553A69008340BA /* CoreGraphics.framework */,
@@ -86,6 +105,8 @@
 				D34E067317553A69008340BA /* AppDelegate.h */,
 				D34E067417553A69008340BA /* AppDelegate.m */,
 				D34E067C17553A69008340BA /* MainStoryboard.storyboard */,
+				D34E06EA17566935008340BA /* MapViewController.h */,
+				D34E06EB17566935008340BA /* MapViewController.m */,
 				D34E067F17553A69008340BA /* ViewController.h */,
 				D34E068017553A69008340BA /* ViewController.m */,
 				D34E066B17553A69008340BA /* Supporting Files */,
@@ -96,6 +117,8 @@
 		D34E066B17553A69008340BA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D34E06F317569D06008340BA /* mapButtonImageZoomed.jpg */,
+				D34E06E8175667A9008340BA /* mapButtonImage.jpg */,
 				D34E066C17553A69008340BA /* FlickrAPI-Info.plist */,
 				D34E066D17553A69008340BA /* InfoPlist.strings */,
 				D34E067017553A69008340BA /* main.m */,
@@ -163,6 +186,8 @@
 				D34E067917553A69008340BA /* Default@2x.png in Resources */,
 				D34E067B17553A69008340BA /* Default-568h@2x.png in Resources */,
 				D34E067E17553A69008340BA /* MainStoryboard.storyboard in Resources */,
+				D34E06E9175667A9008340BA /* mapButtonImage.jpg in Resources */,
+				D34E06F417569D06008340BA /* mapButtonImageZoomed.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +201,7 @@
 				D34E067117553A69008340BA /* main.m in Sources */,
 				D34E067517553A69008340BA /* AppDelegate.m in Sources */,
 				D34E068117553A69008340BA /* ViewController.m in Sources */,
+				D34E06EC17566935008340BA /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +324,7 @@
 				D34E068617553A69008340BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

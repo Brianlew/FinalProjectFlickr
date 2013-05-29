@@ -7,24 +7,30 @@
 //
 
 #import "ViewController.h"
+#import "MapViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
 {
     __weak IBOutlet UIImageView *imageView;
     __weak IBOutlet UIActivityIndicatorView *activityIndicator;
     __weak IBOutlet UISegmentedControl *tagOrLocationControlOutlet;
+    __weak IBOutlet UIButton *mapButton;
         
     NSString *ApiKey;
     NSString *ApiSecret;
     NSArray *photosArray;
     
     int imageCounter;
+    CLLocationCoordinate2D photoCoordinate;
 }
 - (IBAction)nextPhoto:(id)sender;
 - (IBAction)tagOrLocationControl:(id)sender;
+- (IBAction)goToMapViewController:(id)sender;
 
 -(void)getPhotosFromFlickr;
 -(void)displayNextPhoto;
+-(void)getPhotoGeoLocation:(NSString*)photoId;
 
 @end
 
@@ -37,6 +43,11 @@
     ApiKey = @"4285143b45794604189ae812ab052343";
     ApiSecret = @"eeff2d90b373858a";
     
+    tagOrLocationControlOutlet.selectedSegmentIndex = 0;
+    mapButton.layer.cornerRadius = 7;
+    mapButton.clipsToBounds = YES;
+
+    mapButton.hidden = YES;
     activityIndicator.color = [UIColor blueColor];
 
     [self getPhotosFromFlickr];
@@ -45,16 +56,14 @@
 -(void)getPhotosFromFlickr
 {
     imageCounter = 0;
-    
-    //http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4285143b45794604189ae812ab052343&tags=goblue
-    
+        
     [activityIndicator startAnimating];
     
     NSString *urlString;
 
     if (tagOrLocationControlOutlet.selectedSegmentIndex == 0) {
     //search by tag
-    NSString *tags = @"goblue";
+    NSString *tags = @"UniversityOfMichigan";
     urlString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=%@&tags=%@", ApiKey, tags];
     }
     else {
@@ -96,8 +105,19 @@
     [self getPhotosFromFlickr];
 }
 
+- (IBAction)goToMapViewController:(id)sender {
+    [self performSegueWithIdentifier:@"mapSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ((MapViewController*)segue.destinationViewController).photoCoordinate = photoCoordinate;
+}
+
 -(void)displayNextPhoto
 {
+    mapButton.hidden = YES;
+    
     NSString *photoURLString = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg", [photosArray[imageCounter] objectForKey:@"farm"], [photosArray[imageCounter] objectForKey:@"server"], [photosArray[imageCounter] objectForKey:@"id"], [photosArray[imageCounter] objectForKey:@"secret"]];
     
     NSLog(@"%@", photoURLString);
@@ -106,6 +126,38 @@
     
     NSLog(@"Image %i of %i", imageCounter, photosArray.count);
     imageView.image = [UIImage imageWithData:photoData];
+    
+    [self getPhotoGeoLocation:[photosArray[imageCounter] objectForKey:@"id"]];
 }
+
+-(void)getPhotoGeoLocation:(NSString*)photoId
+{
+    NSString *urlString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=%@&photo_id=%@&format=json&nojsoncallback=1", ApiKey,photoId];
+    
+    NSLog(@"%@", urlString);
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        
+        if ([[responseDictionary objectForKey:@"stat"] isEqual:@"ok"]) {
+            NSDictionary *photo = [responseDictionary objectForKey:@"photo"];
+            NSDictionary *location = [photo objectForKey:@"location"];
+            
+            CGFloat latitude = [[location objectForKey:@"latitude"] floatValue];
+            CGFloat longitude = [[location objectForKey:@"longitude"] floatValue];
+            
+            photoCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
+            
+            mapButton.hidden = NO;
+        }
+        
+    }];
+    
+}
+
+
+
+
 
 @end
