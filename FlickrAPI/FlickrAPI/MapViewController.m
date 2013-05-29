@@ -64,4 +64,8 @@
         //
     }];
 }
+
+- (IBAction)changeMapType:(UISegmentedControl*)sender {
+    mapView.mapType = sender.selectedSegmentIndex; //0 for std, 1 for sat, 2 for hybrid
+}
 @end

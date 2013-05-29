@@ -31,6 +31,7 @@
 -(void)getPhotosFromFlickr;
 -(void)displayNextPhoto;
 -(void)getPhotoGeoLocation:(NSString*)photoId;
+-(void)setUpGestureRecognizers;
 
 @end
 
@@ -50,6 +51,7 @@
     mapButton.hidden = YES;
     activityIndicator.color = [UIColor blueColor];
 
+    [self setUpGestureRecognizers];
     [self getPhotosFromFlickr];
 }
 
@@ -98,6 +100,18 @@
 
 - (IBAction)nextPhoto:(id)sender {
     imageCounter++;
+    if (imageCounter >= photosArray.count) {
+        imageCounter = 0;
+    }
+    [self displayNextPhoto];
+}
+
+-(void)previousPhoto
+{
+    imageCounter--;
+    if (imageCounter < 0) {
+        imageCounter = photosArray.count - 1;
+    }
     [self displayNextPhoto];
 }
 
@@ -155,6 +169,20 @@
     }];
     
 }
+
+-(void)setUpGestureRecognizers
+{
+    UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(nextPhoto:)];
+    leftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    leftGesture.delegate = self;
+    [self.view addGestureRecognizer:leftGesture];
+
+    UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(previousPhoto)];
+    rightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    rightGesture.delegate = self;
+    [self.view addGestureRecognizer:rightGesture];
+}
+
 
 
 

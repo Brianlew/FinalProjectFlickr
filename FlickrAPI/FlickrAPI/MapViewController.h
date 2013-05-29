@@ -16,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 - (IBAction)backToPhotoView:(id)sender;
+- (IBAction)changeMapType:(id)sender;
 @end
