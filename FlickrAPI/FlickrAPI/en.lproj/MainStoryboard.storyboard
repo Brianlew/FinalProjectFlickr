@@ -60,7 +60,7 @@
                                 </state>
                                 <connections>
                                     <action selector="goToMapViewController:" destination="2" eventType="touchUpInside" id="ckP-1y-nkQ"/>
-                                    <segue destination="Ut3-Hu-PgX" kind="modal" identifier="mapSegue" modalTransitionStyle="crossDissolve" id="ZBY-al-Y72"/>
+                                    <segue destination="Ut3-Hu-PgX" kind="modal" identifier="mapSegue" modalTransitionStyle="partialCurl" id="ZBY-al-Y72"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -94,44 +94,36 @@
                                 <rect key="frame" x="150" y="215" width="20" height="20"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Eyf-oZ-fpj">
+                                <rect key="frame" x="104" y="510" width="113" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Std"/>
+                                    <segment title="Sat"/>
+                                    <segment title="Hyb"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeMapType:" destination="Ut3-Hu-PgX" eventType="valueChanged" id="wFC-1D-VMm"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="r9Q-IR-WIO"/>
                     <connections>
                         <outlet property="activityIndicator" destination="PQB-tG-YRZ" id="Ecg-55-ndg"/>
+                        <outlet property="mapTypeControl" destination="Eyf-oZ-fpj" id="5JF-nK-pfO"/>
                         <outlet property="mapView" destination="gE4-LJ-RZa" id="KxL-BA-yzy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gx2-d1-j3A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="720" y="-44"/>
+            <point key="canvasLocation" x="738" y="-44"/>
         </scene>
     </scenes>
     <resources>
         <image name="mapButtonImageZoomed.jpg" width="201" height="201"/>
     </resources>
-    <classes>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goToMapViewController:"/>
-                <relationship kind="action" name="nextPhoto:"/>
-                <relationship kind="action" name="tagOrLocationControl:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="mapButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tagOrLocationControlOutlet" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

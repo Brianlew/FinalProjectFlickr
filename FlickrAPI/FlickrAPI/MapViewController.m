@@ -55,6 +55,10 @@
     mapView.region = region;
     [mapView addAnnotation:pointAnnotation];
     
+    self.mapTypeControl.selectedSegmentIndex = 2;
+    mapView.mapType = 2;
+
+    
     [self getFoursquareVenuesWithLatitude:photoCoordinate.latitude andLongitude:photoCoordinate.longitude];
 }
 
@@ -111,6 +115,65 @@
     
     [mapView addAnnotation:venueAnnotation];
     
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation
+{
+    NSString* venueIdentifier = @"venue";
+    NSString* pinIdentifier = @"pin";
+    
+    
+    MKAnnotationView* annotationView;
+    
+    if ([annotation isKindOfClass:[VenueAnnotation class]]) {
+        annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:venueIdentifier];
+        
+    } else {
+        annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
+        
+        
+    }
+    
+    if(!annotationView) {
+        if ([annotation isKindOfClass:[VenueAnnotation class]]) {
+            annotationView = [[VenueAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:venueIdentifier];
+            
+        } else {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
+            ((MKPinAnnotationView*)annotationView).animatesDrop = YES;
+        }
+        annotationView.canShowCallout = YES;
+        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        
+    } else {
+        
+        annotationView.annotation = annotation;
+        
+    }
+    
+    return  annotationView;
+    
+}
+
+- (void)addPinToLocation:(CLLocationCoordinate2D)location
+{
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:location];
+    [mapView addAnnotation:annotation];
+}
+
+/*- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    
+    [self performSegueWithIdentifier:@"mapToDetail" sender:self];
+    
+}*/
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    VenueAnnotation* venueAnnotation = [mapView selectedAnnotations][0];
+    Venue* venue = venueAnnotation.venue;
+    ((DetailViewController*)segue.destinationViewController).venue = venue;
     
 }
 
@@ -134,12 +197,6 @@
 //    [self addPinToLocation:center];
 //}
 
-- (void)addPinToLocation:(CLLocationCoordinate2D)location
-{
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:location];
-    [mapView addAnnotation:annotation];
-}
 
 //- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 //{
@@ -153,57 +210,9 @@
 //    [locationMananger stopUpdatingLocation];
 //}
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation
-{
-    NSString* venueIdentifier = @"venue";
-    NSString* pinIdentifier = @"pin";
-    
-    
-    MKAnnotationView* annotationView;
-    
-    if ([annotation isKindOfClass:[VenueAnnotation class]]) {
-        annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:venueIdentifier];
-        
-    } else {
-        annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
-        
-        
-    }
-    
-    if(!annotationView) {
-        if ([annotation isKindOfClass:[VenueAnnotation class]]) {
-            annotationView = [[VenueAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:venueIdentifier];
-        
-        } else {
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
-            ((MKPinAnnotationView*)annotationView).animatesDrop = YES;
-        }
-        annotationView.canShowCallout = YES;
-        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        
-    } else {
-        
-        annotationView.annotation = annotation;
-        
-    }
-        
-    return  annotationView;
-    
-}
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-{
+- (IBAction)changeMapType:(id)sender {
     
-    [self performSegueWithIdentifier:@"mapToDetail" sender:self];
-    
+    mapView.mapType = self.mapTypeControl.selectedSegmentIndex;
 }
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    VenueAnnotation* venueAnnotation = [mapView selectedAnnotations][0];
-    Venue* venue = venueAnnotation.venue;
-    ((DetailViewController*)segue.destinationViewController).venue = venue;
-    
-}
-
 @end

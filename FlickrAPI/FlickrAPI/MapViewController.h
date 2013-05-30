@@ -13,5 +13,7 @@
 
 @property (nonatomic, assign) CLLocationCoordinate2D photoCoordinate;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *mapTypeControl;
+- (IBAction)changeMapType:(id)sender;
 
 @end
