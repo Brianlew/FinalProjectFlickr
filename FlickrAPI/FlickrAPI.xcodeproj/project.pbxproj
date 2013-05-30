@@ -19,11 +19,23 @@
 		D34E067E17553A69008340BA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34E067C17553A69008340BA /* MainStoryboard.storyboard */; };
 		D34E068117553A69008340BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D34E068017553A69008340BA /* ViewController.m */; };
 		D34E06E9175667A9008340BA /* mapButtonImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D34E06E8175667A9008340BA /* mapButtonImage.jpg */; };
-		D34E06EC17566935008340BA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D34E06EB17566935008340BA /* MapViewController.m */; };
 		D34E06EE17566A5C008340BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E06ED17566A5C008340BA /* MapKit.framework */; };
 		D34E06F017566A63008340BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E06EF17566A63008340BA /* CoreLocation.framework */; };
 		D34E06F217569ADD008340BA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E06F117569ADD008340BA /* QuartzCore.framework */; };
 		D34E06F417569D06008340BA /* mapButtonImageZoomed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D34E06F317569D06008340BA /* mapButtonImageZoomed.jpg */; };
+		D3BFC8011757E2EB009EF058 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D365D9871757D96200232B6D /* MapViewController.m */; };
+		D3BFC8021757E2EB009EF058 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D365D97F1757D8AD00232B6D /* DetailViewController.m */; };
+		D3BFC8031757E2EB009EF058 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = D365D9811757D8AD00232B6D /* Venue.m */; };
+		D3BFC8041757E2EB009EF058 /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D365D9831757D8AD00232B6D /* VenueAnnotation.m */; };
+		D3BFC8051757E2EB009EF058 /* VenueAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D365D9851757D8AD00232B6D /* VenueAnnotationView.m */; };
+		D3BFC81A1757E6E0009EF058 /* Foursquare2.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BFC80C1757E6E0009EF058 /* Foursquare2.m */; };
+		D3BFC81B1757E6E0009EF058 /* FSRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BFC80E1757E6E0009EF058 /* FSRequester.m */; };
+		D3BFC81C1757E6E0009EF058 /* FSTargetCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BFC8101757E6E0009EF058 /* FSTargetCallback.m */; };
+		D3BFC81D1757E6E0009EF058 /* FSWebLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BFC8121757E6E0009EF058 /* FSWebLogin.m */; };
+		D3BFC81F1757E6E0009EF058 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BFC8141757E6E0009EF058 /* pin.png */; };
+		D3BFC8201757E6E0009EF058 /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BFC8151757E6E0009EF058 /* pin@2x.png */; };
+		D3BFC8211757E6E0009EF058 /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BFC8161757E6E0009EF058 /* poweredByFoursquare_gray.png */; };
+		D3BFC8221757E6E0009EF058 /* poweredByFoursquare_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BFC8171757E6E0009EF058 /* poweredByFoursquare_gray@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,12 +56,32 @@
 		D34E067F17553A69008340BA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D34E068017553A69008340BA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D34E06E8175667A9008340BA /* mapButtonImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mapButtonImage.jpg; sourceTree = "<group>"; };
-		D34E06EA17566935008340BA /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		D34E06EB17566935008340BA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		D34E06ED17566A5C008340BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D34E06EF17566A63008340BA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D34E06F117569ADD008340BA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D34E06F317569D06008340BA /* mapButtonImageZoomed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mapButtonImageZoomed.jpg; sourceTree = "<group>"; };
+		D365D97E1757D8AD00232B6D /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		D365D97F1757D8AD00232B6D /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		D365D9801757D8AD00232B6D /* Venue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		D365D9811757D8AD00232B6D /* Venue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		D365D9821757D8AD00232B6D /* VenueAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
+		D365D9831757D8AD00232B6D /* VenueAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
+		D365D9841757D8AD00232B6D /* VenueAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VenueAnnotationView.h; sourceTree = "<group>"; };
+		D365D9851757D8AD00232B6D /* VenueAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotationView.m; sourceTree = "<group>"; };
+		D365D9861757D96200232B6D /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		D365D9871757D96200232B6D /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		D3BFC80B1757E6E0009EF058 /* Foursquare2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foursquare2.h; sourceTree = "<group>"; };
+		D3BFC80C1757E6E0009EF058 /* Foursquare2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Foursquare2.m; sourceTree = "<group>"; };
+		D3BFC80D1757E6E0009EF058 /* FSRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSRequester.h; sourceTree = "<group>"; };
+		D3BFC80E1757E6E0009EF058 /* FSRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSRequester.m; sourceTree = "<group>"; };
+		D3BFC80F1757E6E0009EF058 /* FSTargetCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTargetCallback.h; sourceTree = "<group>"; };
+		D3BFC8101757E6E0009EF058 /* FSTargetCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTargetCallback.m; sourceTree = "<group>"; };
+		D3BFC8111757E6E0009EF058 /* FSWebLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWebLogin.h; sourceTree = "<group>"; };
+		D3BFC8121757E6E0009EF058 /* FSWebLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWebLogin.m; sourceTree = "<group>"; };
+		D3BFC8141757E6E0009EF058 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		D3BFC8151757E6E0009EF058 /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
+		D3BFC8161757E6E0009EF058 /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
+		D3BFC8171757E6E0009EF058 /* poweredByFoursquare_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poweredByFoursquare_gray@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				D34E066A17553A69008340BA /* FlickrAPI */,
+				D3BFC80A1757E6E0009EF058 /* Foursquare2 */,
 				D34E066317553A69008340BA /* Frameworks */,
 				D34E066217553A69008340BA /* Products */,
 			);
@@ -105,8 +138,16 @@
 				D34E067317553A69008340BA /* AppDelegate.h */,
 				D34E067417553A69008340BA /* AppDelegate.m */,
 				D34E067C17553A69008340BA /* MainStoryboard.storyboard */,
-				D34E06EA17566935008340BA /* MapViewController.h */,
-				D34E06EB17566935008340BA /* MapViewController.m */,
+				D365D9861757D96200232B6D /* MapViewController.h */,
+				D365D9871757D96200232B6D /* MapViewController.m */,
+				D365D97E1757D8AD00232B6D /* DetailViewController.h */,
+				D365D97F1757D8AD00232B6D /* DetailViewController.m */,
+				D365D9801757D8AD00232B6D /* Venue.h */,
+				D365D9811757D8AD00232B6D /* Venue.m */,
+				D365D9821757D8AD00232B6D /* VenueAnnotation.h */,
+				D365D9831757D8AD00232B6D /* VenueAnnotation.m */,
+				D365D9841757D8AD00232B6D /* VenueAnnotationView.h */,
+				D365D9851757D8AD00232B6D /* VenueAnnotationView.m */,
 				D34E067F17553A69008340BA /* ViewController.h */,
 				D34E068017553A69008340BA /* ViewController.m */,
 				D34E066B17553A69008340BA /* Supporting Files */,
@@ -128,6 +169,25 @@
 				D34E067A17553A69008340BA /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3BFC80A1757E6E0009EF058 /* Foursquare2 */ = {
+			isa = PBXGroup;
+			children = (
+				D3BFC80B1757E6E0009EF058 /* Foursquare2.h */,
+				D3BFC80C1757E6E0009EF058 /* Foursquare2.m */,
+				D3BFC80D1757E6E0009EF058 /* FSRequester.h */,
+				D3BFC80E1757E6E0009EF058 /* FSRequester.m */,
+				D3BFC80F1757E6E0009EF058 /* FSTargetCallback.h */,
+				D3BFC8101757E6E0009EF058 /* FSTargetCallback.m */,
+				D3BFC8111757E6E0009EF058 /* FSWebLogin.h */,
+				D3BFC8121757E6E0009EF058 /* FSWebLogin.m */,
+				D3BFC8141757E6E0009EF058 /* pin.png */,
+				D3BFC8151757E6E0009EF058 /* pin@2x.png */,
+				D3BFC8161757E6E0009EF058 /* poweredByFoursquare_gray.png */,
+				D3BFC8171757E6E0009EF058 /* poweredByFoursquare_gray@2x.png */,
+			);
+			path = Foursquare2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +248,10 @@
 				D34E067E17553A69008340BA /* MainStoryboard.storyboard in Resources */,
 				D34E06E9175667A9008340BA /* mapButtonImage.jpg in Resources */,
 				D34E06F417569D06008340BA /* mapButtonImageZoomed.jpg in Resources */,
+				D3BFC81F1757E6E0009EF058 /* pin.png in Resources */,
+				D3BFC8201757E6E0009EF058 /* pin@2x.png in Resources */,
+				D3BFC8211757E6E0009EF058 /* poweredByFoursquare_gray.png in Resources */,
+				D3BFC8221757E6E0009EF058 /* poweredByFoursquare_gray@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,10 +262,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3BFC8011757E2EB009EF058 /* MapViewController.m in Sources */,
+				D3BFC8021757E2EB009EF058 /* DetailViewController.m in Sources */,
+				D3BFC8031757E2EB009EF058 /* Venue.m in Sources */,
+				D3BFC8041757E2EB009EF058 /* VenueAnnotation.m in Sources */,
+				D3BFC8051757E2EB009EF058 /* VenueAnnotationView.m in Sources */,
 				D34E067117553A69008340BA /* main.m in Sources */,
 				D34E067517553A69008340BA /* AppDelegate.m in Sources */,
 				D34E068117553A69008340BA /* ViewController.m in Sources */,
-				D34E06EC17566935008340BA /* MapViewController.m in Sources */,
+				D3BFC81A1757E6E0009EF058 /* Foursquare2.m in Sources */,
+				D3BFC81B1757E6E0009EF058 /* FSRequester.m in Sources */,
+				D3BFC81C1757E6E0009EF058 /* FSTargetCallback.m in Sources */,
+				D3BFC81D1757E6E0009EF058 /* FSWebLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

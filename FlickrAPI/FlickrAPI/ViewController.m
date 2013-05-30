@@ -44,7 +44,7 @@
     ApiKey = @"4285143b45794604189ae812ab052343";
     ApiSecret = @"eeff2d90b373858a";
     
-    tagOrLocationControlOutlet.selectedSegmentIndex = 0;
+    tagOrLocationControlOutlet.selectedSegmentIndex = 1;
     mapButton.layer.cornerRadius = 7;
     mapButton.clipsToBounds = YES;
 
@@ -65,7 +65,7 @@
 
     if (tagOrLocationControlOutlet.selectedSegmentIndex == 0) {
     //search by tag
-    NSString *tags = @"UniversityOfMichigan";
+    NSString *tags = @"SearsTower";
     urlString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=%@&tags=%@", ApiKey, tags];
     }
     else {

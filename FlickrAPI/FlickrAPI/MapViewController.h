@@ -1,20 +1,17 @@
 //
-//  MapViewController.h
-//  FlickrAPI
+//  ViewController.h
+//  FlickSquare
 //
-//  Created by Brian Lewis on 5/29/13.
-//  Copyright (c) 2013 Brian Lewis. All rights reserved.
+//  Created by Natasha Murashev on 5/28/13.
+//  Copyright (c) 2013 Natasha Murashev. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import <CoreLocation/CoreLocation.h>
 
-@interface MapViewController : UIViewController 
+@interface MapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate>
 
-@property CLLocationCoordinate2D photoCoordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D photoCoordinate;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-- (IBAction)backToPhotoView:(id)sender;
-- (IBAction)changeMapType:(id)sender;
 @end
