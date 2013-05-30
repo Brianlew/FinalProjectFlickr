@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30F29451757F6970037F475 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30F29441757F6970037F475 /* CollectionViewController.m */; };
+		D30F29481757F91B0037F475 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D30F29471757F91B0037F475 /* CollectionViewCell.m */; };
 		D34E066517553A69008340BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E066417553A69008340BA /* UIKit.framework */; };
 		D34E066717553A69008340BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E066617553A69008340BA /* Foundation.framework */; };
 		D34E066917553A69008340BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34E066817553A69008340BA /* CoreGraphics.framework */; };
@@ -39,6 +41,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D30F29431757F6970037F475 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		D30F29441757F6970037F475 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		D30F29461757F91B0037F475 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		D30F29471757F91B0037F475 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		D34E066117553A69008340BA /* FlickrAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34E066417553A69008340BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D34E066617553A69008340BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +144,10 @@
 				D34E067317553A69008340BA /* AppDelegate.h */,
 				D34E067417553A69008340BA /* AppDelegate.m */,
 				D34E067C17553A69008340BA /* MainStoryboard.storyboard */,
+				D30F29431757F6970037F475 /* CollectionViewController.h */,
+				D30F29441757F6970037F475 /* CollectionViewController.m */,
+				D30F29461757F91B0037F475 /* CollectionViewCell.h */,
+				D30F29471757F91B0037F475 /* CollectionViewCell.m */,
 				D365D9861757D96200232B6D /* MapViewController.h */,
 				D365D9871757D96200232B6D /* MapViewController.m */,
 				D365D97E1757D8AD00232B6D /* DetailViewController.h */,
@@ -274,6 +284,8 @@
 				D3BFC81B1757E6E0009EF058 /* FSRequester.m in Sources */,
 				D3BFC81C1757E6E0009EF058 /* FSTargetCallback.m in Sources */,
 				D3BFC81D1757E6E0009EF058 /* FSWebLogin.m in Sources */,
+				D30F29451757F6970037F475 /* CollectionViewController.m in Sources */,
+				D30F29481757F91B0037F475 /* CollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
