@@ -60,7 +60,6 @@
                                 </state>
                                 <connections>
                                     <action selector="goToMapViewController:" destination="2" eventType="touchUpInside" id="ckP-1y-nkQ"/>
-                                    <segue destination="Ut3-Hu-PgX" kind="modal" identifier="mapSegue" modalTransitionStyle="partialCurl" id="ZBY-al-Y72"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -163,8 +162,8 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="goToMapViewController:" destination="2" eventType="touchUpInside" id="eKH-RY-V9i"/>
-                                                        <action selector="showOnMap:" destination="QEN-iP-4aO" eventType="touchUpInside" id="XBV-wP-e8r"/>
+                                                        <action selector="goToMap:" destination="DOg-1R-eQc" eventType="touchUpInside" id="W51-gs-X0K"/>
+                                                        <segue destination="Ut3-Hu-PgX" kind="modal" identifier="mapSegue" modalTransitionStyle="partialCurl" id="Jno-w9-94B"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

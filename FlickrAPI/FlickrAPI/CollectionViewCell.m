@@ -28,6 +28,4 @@
 }
 */
 
-- (IBAction)showOnMap:(id)sender {
-}
 @end

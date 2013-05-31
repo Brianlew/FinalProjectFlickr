@@ -33,6 +33,7 @@
 -(void)getPhotosFromFlickr;
 -(void)getPhotoGeoLocation:(NSString*)photoId forCell:(CollectionViewCell*)cell;
 
+- (IBAction)goToMap:(id)sender;
 @end
 
 @implementation CollectionViewController
@@ -104,12 +105,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (IBAction)tagOrLocationControl:(id)sender {
-    [self getPhotosFromFlickr];
-}
-
-- (IBAction)goToMapViewController:(id)sender {
+- (IBAction)goToMap:(id)sender {
     [self performSegueWithIdentifier:@"mapSegue" sender:self];
 }
 
