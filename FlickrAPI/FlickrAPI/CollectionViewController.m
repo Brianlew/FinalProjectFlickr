@@ -14,6 +14,8 @@
 @interface CollectionViewController ()
 {
     __weak IBOutlet UIActivityIndicatorView *activityIndicator;
+    __weak IBOutlet UIView *searchView;
+    __weak IBOutlet UITextField *searchTextField;
 
     NSString *ApiKey;
     NSString *ApiSecret;
@@ -34,6 +36,8 @@
 -(void)getPhotoGeoLocation:(NSString*)photoId forCell:(CollectionViewCell*)cell;
 
 - (IBAction)goToMap:(id)sender;
+- (IBAction)showSearchView:(id)sender;
+- (IBAction)searchWithNewTag:(id)sender;
 @end
 
 @implementation CollectionViewController
@@ -57,7 +61,31 @@
     
     imageArray = [[NSMutableArray alloc] init];
     operationQueue = [[NSOperationQueue alloc] init];
+    
+    searchView.layer.cornerRadius = 8;
+    //[self getPhotosFromFlickr];
+}
+
+- (IBAction)showSearchView:(id)sender {
+    [searchTextField becomeFirstResponder];
+    [UIView animateWithDuration:.5 animations:^{
+        searchView.alpha = 1;
+    }];
+}
+
+- (IBAction)searchWithNewTag:(id)sender {
+    [UIView animateWithDuration:.5 animations:^{
+        searchView.alpha = 0;
+    }];
+    [searchTextField resignFirstResponder];
+    [imageArray removeAllObjects];
     [self getPhotosFromFlickr];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self searchWithNewTag:self];
+    return YES;
 }
 
 -(void)getPhotosFromFlickr
@@ -68,8 +96,9 @@
     
     NSString *urlString;
     
-    NSString *tags = @"SearsTower";
-    urlString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=%@&tags=%@", ApiKey, tags];
+    NSString *tags = searchTextField.text;  //@"SearsTower";
+    NSString *encodedTags = [tags stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    urlString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=%@&tags=%@", ApiKey, encodedTags];
     
    /*     CGFloat latitude = 28.418793; //Cinderella's Castle at Disney World's Magic Kingdom
         CGFloat longitude = -81.581201;
@@ -86,6 +115,10 @@
         photosArray = [photos objectForKey:@"photo"];
         
         [activityIndicator stopAnimating];
+        
+        [UIView animateWithDuration:.5 animations:^{
+            collectionView.alpha = 1;
+        }];
         
         [collectionView reloadData];
         
