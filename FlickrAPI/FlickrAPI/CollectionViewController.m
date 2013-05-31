@@ -30,6 +30,7 @@
     CLLocationCoordinate2D photoCoordinate;
     
     NSOperationQueue *operationQueue;
+    int maxPreload;
 }
 
 -(void)getPhotosFromFlickr;
@@ -61,6 +62,7 @@
     
     imageArray = [[NSMutableArray alloc] init];
     operationQueue = [[NSOperationQueue alloc] init];
+    maxPreload = 3;
     
     searchView.layer.cornerRadius = 8;
     //[self getPhotosFromFlickr];
@@ -79,6 +81,8 @@
     }];
     [searchTextField resignFirstResponder];
     [imageArray removeAllObjects];
+    
+    NSLog(@"\n\n\n\n\n\nNEW SEARCH");
     [self getPhotosFromFlickr];
 }
 
@@ -189,7 +193,7 @@
         
     NSLog(@"array count: %i , index: %i", imageArray.count, indexPath.item);
     
-    if (imageArray.count <= indexPath.item) {
+    if (imageArray.count <= indexPath.item && imageArray.count < photosArray.count) {
         
         NSString *photoURLString = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg", [photosArray[indexPath.item] objectForKey:@"farm"], [photosArray[indexPath.item] objectForKey:@"server"], [photosArray[indexPath.item] objectForKey:@"id"], [photosArray[indexPath.item] objectForKey:@"secret"]];
         
@@ -211,7 +215,7 @@
     
     int preloadCount = imageArray.count - indexPath.item;
 
-    if (preloadCount < 3) {
+    if (preloadCount < maxPreload) {
         [self preloadPhotos:indexPath.item currentPreloadCount:preloadCount];
     }
     
@@ -222,23 +226,25 @@
 
 -(void)preloadPhotos:(int)indexItem currentPreloadCount:(int)preloadCount
 {    
-    for (int i=preloadCount; i < 3; i++) {
-
-        NSLog(@"array count: %i , index: %i", imageArray.count, indexItem);
-        
-        NSBlockOperation *getNextPhotoOperation = [NSBlockOperation blockOperationWithBlock:^{
-            NSString *photoURLString = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg", [photosArray[indexItem+i] objectForKey:@"farm"], [photosArray[indexItem+i] objectForKey:@"server"], [photosArray[indexItem+i] objectForKey:@"id"], [photosArray[indexItem+i] objectForKey:@"secret"]];
+    for (int i=preloadCount; i < maxPreload; i++) {
+        if (imageArray.count < photosArray.count) {
             
-            NSLog(@"%@", photoURLString);
-            NSURL *photoUrl = [NSURL URLWithString:photoURLString];
-            NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
-            UIImage *image = [UIImage imageWithData:photoData];
+            NSLog(@"array count: %i , index: %i", imageArray.count, indexItem);
             
-            [imageArray replaceObjectAtIndex:indexItem+i withObject:image];
-            NSLog(@"done");
-        }];
-        [imageArray addObject:[UIImage imageNamed:@"imageLoading.jpg"]];
-        [operationQueue addOperation:getNextPhotoOperation];
+            NSBlockOperation *getNextPhotoOperation = [NSBlockOperation blockOperationWithBlock:^{
+                NSString *photoURLString = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg", [photosArray[indexItem+i] objectForKey:@"farm"], [photosArray[indexItem+i] objectForKey:@"server"], [photosArray[indexItem+i] objectForKey:@"id"], [photosArray[indexItem+i] objectForKey:@"secret"]];
+                
+                NSLog(@"%@", photoURLString);
+                NSURL *photoUrl = [NSURL URLWithString:photoURLString];
+                NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
+                UIImage *image = [UIImage imageWithData:photoData];
+                
+                [imageArray replaceObjectAtIndex:indexItem+i withObject:image];
+                NSLog(@"done");
+            }];
+            [imageArray addObject:[UIImage imageNamed:@"imageLoading.jpg"]];
+            [operationQueue addOperation:getNextPhotoOperation];
+        }
     }
 }
 
