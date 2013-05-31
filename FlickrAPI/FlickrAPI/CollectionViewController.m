@@ -55,13 +55,6 @@
     ApiKey = @"4285143b45794604189ae812ab052343";
     ApiSecret = @"eeff2d90b373858a";
     
-/*  tagOrLocationControlOutlet.selectedSegmentIndex = 1;
-    
-    
-    mapButton.hidden = YES;
-
-*/
-    
     imageArray = [[NSMutableArray alloc] init];
     operationQueue = [[NSOperationQueue alloc] init];
     [self getPhotosFromFlickr];

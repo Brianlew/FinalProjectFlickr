@@ -38,15 +38,8 @@
     [activityIndicator startAnimating];
     
     venuesArray = [NSMutableArray array];
-    
-//    locationMananger = [[CLLocationManager alloc] init];
-//    locationMananger.delegate = self;
-//    
-//    [locationMananger startUpdatingLocation];
-    
-//    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(41.89374, -87.63533);
-        
-    MKCoordinateSpan span = MKCoordinateSpanMake(.001, .001);
+            
+    MKCoordinateSpan span = MKCoordinateSpanMake(.003, .003);
     MKCoordinateRegion region = MKCoordinateRegionMake(photoCoordinate, span);
     
     MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
@@ -177,6 +170,13 @@
     
 }
 
+
+- (IBAction)changeMapType:(id)sender {
+    
+    mapView.mapType = self.mapTypeControl.selectedSegmentIndex;
+}
+@end
+
 #pragma mark - Location manager
 
 //-(void)showCurrentLocation:(CLLocation *)location
@@ -211,8 +211,3 @@
 //}
 
 
-- (IBAction)changeMapType:(id)sender {
-    
-    mapView.mapType = self.mapTypeControl.selectedSegmentIndex;
-}
-@end
