@@ -31,7 +31,7 @@
 }
 
 -(void)getPhotosFromFlickr;
--(void)getPhotoGeoLocation:(NSString*)photoId;
+-(void)getPhotoGeoLocation:(NSString*)photoId forCell:(CollectionViewCell*)cell;
 
 @end
 
@@ -55,12 +55,12 @@
     ApiSecret = @"eeff2d90b373858a";
     
 /*  tagOrLocationControlOutlet.selectedSegmentIndex = 1;
-    mapButton.layer.cornerRadius = 7;
-    mapButton.clipsToBounds = YES;
+    
     
     mapButton.hidden = YES;
 
 */
+    
     imageArray = [[NSMutableArray alloc] init];
     operationQueue = [[NSOperationQueue alloc] init];
     [self getPhotosFromFlickr];
@@ -74,13 +74,15 @@
     
     NSString *urlString;
     
+    NSString *tags = @"SearsTower";
+    urlString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=%@&tags=%@", ApiKey, tags];
     
-        CGFloat latitude = 28.418793; //Cinderella's Castle at Disney World's Magic Kingdom
+   /*     CGFloat latitude = 28.418793; //Cinderella's Castle at Disney World's Magic Kingdom
         CGFloat longitude = -81.581201;
         
         urlString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&min_upload_date=20130201&lat=%f&lon=%f&radius=30&format=json&nojsoncallback=1", ApiKey, latitude, longitude];
     
-    
+    */
     NSLog(@"%@", urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -116,7 +118,7 @@
     ((MapViewController*)segue.destinationViewController).photoCoordinate = photoCoordinate;
 }
 
--(void)getPhotoGeoLocation:(NSString*)photoId
+-(void)getPhotoGeoLocation:(NSString*)photoId forCell:(CollectionViewCell*)cell
 {
     NSString *urlString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=%@&photo_id=%@&format=json&nojsoncallback=1", ApiKey,photoId];
     
@@ -135,7 +137,7 @@
             
             photoCoordinate = CLLocationCoordinate2DMake(latitude, longitude);
             
-          //  mapButton.hidden = NO;
+            cell.mapButton.hidden = NO;
         }
         
     }];
@@ -160,6 +162,8 @@
     CollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     cell.mapButton.hidden = YES;
+    cell.mapButton.layer.cornerRadius = 5;
+    cell.mapButton.clipsToBounds = YES;
         
     NSLog(@"array count: %i , index: %i", imageArray.count, indexPath.item);
     
@@ -171,7 +175,10 @@
         NSURL *photoUrl = [NSURL URLWithString:photoURLString];
         NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
         
-        cell.imageView.image = [UIImage imageWithData:photoData];
+        UIImage *image = [UIImage imageWithData:photoData];
+        
+        cell.imageView.image = image;
+        [imageArray addObject:image];
     }
     else {
         cell.imageView.image = imageArray[indexPath.item];
@@ -179,17 +186,21 @@
     
         
     NSLog(@"Image %i of %i", indexPath.item, photosArray.count);
+    
+    int preloadCount = imageArray.count - indexPath.item;
 
-    [self preloadPhotos:indexPath.item];
+    if (preloadCount < 3) {
+        [self preloadPhotos:indexPath.item currentPreloadCount:preloadCount];
+    }
+    
+    [self getPhotoGeoLocation:[photosArray[indexPath.item] objectForKey:@"id"] forCell:cell];
     
     return cell;
 }
 
--(void)preloadPhotos:(int)indexItem
-{
-    int difference = imageArray.count - indexItem;
-    
-    for (int i=0; i < 3-difference; i++) {
+-(void)preloadPhotos:(int)indexItem currentPreloadCount:(int)preloadCount
+{    
+    for (int i=preloadCount; i < 3; i++) {
 
         NSLog(@"array count: %i , index: %i", imageArray.count, indexItem);
         
@@ -201,9 +212,10 @@
             NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
             UIImage *image = [UIImage imageWithData:photoData];
             
-            [imageArray addObject:image];
+            [imageArray replaceObjectAtIndex:indexItem+i withObject:image];
             NSLog(@"done");
         }];
+        [imageArray addObject:[UIImage imageNamed:@"imageLoading.jpg"]];
         [operationQueue addOperation:getNextPhotoOperation];
     }
 }
