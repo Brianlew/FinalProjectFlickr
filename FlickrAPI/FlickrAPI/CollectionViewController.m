@@ -16,6 +16,7 @@
     __weak IBOutlet UIActivityIndicatorView *activityIndicator;
     __weak IBOutlet UIView *searchView;
     __weak IBOutlet UITextField *searchTextField;
+    __weak IBOutlet UILabel *noResultsLabel;
 
     NSString *ApiKey;
     NSString *ApiSecret;
@@ -65,7 +66,8 @@
     maxPreload = 3;
     
     searchView.layer.cornerRadius = 8;
-    //[self getPhotosFromFlickr];
+    noResultsLabel.layer.cornerRadius = 5;
+    noResultsLabel.hidden = YES;
 }
 
 - (IBAction)showSearchView:(id)sender {
@@ -81,6 +83,7 @@
     }];
     [searchTextField resignFirstResponder];
     [imageArray removeAllObjects];
+    noResultsLabel.hidden = YES;
     
     NSLog(@"\n\n\n\n\n\nNEW SEARCH");
     [self getPhotosFromFlickr];
@@ -120,9 +123,21 @@
         
         [activityIndicator stopAnimating];
         
-        [UIView animateWithDuration:.5 animations:^{
-            collectionView.alpha = 1;
-        }];
+        if (photosArray.count == 0) {
+            NSLog(@"\n\nno results found");
+            [self showSearchView:self];
+            noResultsLabel.text = [NSString stringWithFormat:@"No Photos for\n\"%@\"", searchTextField.text];
+            collectionView.alpha = 0;
+            noResultsLabel.hidden = NO;
+        }
+        else{
+            [UIView animateWithDuration:.5 animations:^{
+                collectionView.alpha = 1;
+            }];
+        }
+        
+        [collectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1)
+                                animated:NO];
         
         [collectionView reloadData];
         
