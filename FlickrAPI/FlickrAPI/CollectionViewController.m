@@ -222,7 +222,13 @@
         [imageArray addObject:image];
     }
     else {
-        cell.imageView.image = imageArray[indexPath.item];
+        
+        if (imageArray.count >= indexPath.item) {
+            cell.imageView.image = imageArray[indexPath.item];
+        }
+       // else {
+         //   cell.imageView.image = [UIImage imageNamed:@"imageLoading.jpg"];
+       // }
     }
     
         
@@ -247,6 +253,7 @@
             NSLog(@"array count: %i , index: %i", imageArray.count, indexItem);
             
             NSBlockOperation *getNextPhotoOperation = [NSBlockOperation blockOperationWithBlock:^{
+                
                 NSString *photoURLString = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg", [photosArray[indexItem+i] objectForKey:@"farm"], [photosArray[indexItem+i] objectForKey:@"server"], [photosArray[indexItem+i] objectForKey:@"id"], [photosArray[indexItem+i] objectForKey:@"secret"]];
                 
                 NSLog(@"%@", photoURLString);
@@ -254,9 +261,17 @@
                 NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
                 UIImage *image = [UIImage imageWithData:photoData];
                 
-                [imageArray replaceObjectAtIndex:indexItem+i withObject:image];
+                NSBlockOperation *updateCollectionViewOperation = [NSBlockOperation blockOperationWithBlock:^{
+                    [imageArray replaceObjectAtIndex:indexItem+i withObject:image];
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:indexItem+i inSection:0];
+                    [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                }];
+                
+                [[NSOperationQueue mainQueue] addOperation:updateCollectionViewOperation];
+                
                 NSLog(@"done");
             }];
+            
             [imageArray addObject:[UIImage imageNamed:@"imageLoading.jpg"]];
             [operationQueue addOperation:getNextPhotoOperation];
         }
