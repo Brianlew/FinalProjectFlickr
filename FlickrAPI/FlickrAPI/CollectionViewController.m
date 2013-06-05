@@ -222,13 +222,9 @@
         [imageArray addObject:image];
     }
     else {
-        
         if (imageArray.count >= indexPath.item) {
             cell.imageView.image = imageArray[indexPath.item];
         }
-       // else {
-         //   cell.imageView.image = [UIImage imageNamed:@"imageLoading.jpg"];
-       // }
     }
     
         
